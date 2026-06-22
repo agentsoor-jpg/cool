@@ -1,0 +1,96 @@
+
+1. إصلاح الكود المكسور
+
+الملف المطلوب
+orchestrator/main.py إصلاح imports المكسورة (dependency_resolver, completeness_checker...)
+core/meta_agent.py إزالة Mock Execution واستبدالها باستدعاء Agents حقيقي
+agents/*/adapter.py تحويل الـ Stubs إلى Adapters حقيقية تتصل بـ APIs
+
+2. إعادة هيكلة النشر
+
+الملف المطلوب
+render.yaml كتابة ملف نشر صحيح لـ 5 خدمات منفصلة
+docker-compose.yml تعديله ليدعم URLs بدل localhost
+orchestrator/main.py إضافة Service Discovery ديناميكي
+
+3. تحسين الاتصال بين الوكلاء
+
+المهمة التفاصيل
+🔗 Service URLs استبدال localhost:3001 بـ os.getenv("OPENHANDS_URL")
+📨 Message Bus دمج Redis كـ Pub/Sub بين الوكلاء
+🔄 Retry Logic إضافة نظام إعادة المحاولة عند فشل Agent
+
+4. إصلاح Frontend
+
+الملف المطلوب
+frontend/ إصلاح imports المكسورة
+frontend/ ربط SSE بالـ Backend بشكل مستقر
+frontend/ إضافة Terminal Widget حقيقي
+
+5. إضافة المكونات الناقصة
+
+الملف المطلوب
+planning/dependency_resolver.py إنشاء الملف من الصفر
+verification/completeness_checker.py إنشاء الملف من الصفر
+orchestrator/router.py كتابة التوجيه الحقيقي
+orchestrator/workflow_engine.py كتابة محرك سير العمل
+
+6. تحسين الذاكرة والتعلم
+
+المهمة التفاصيل
+🧠 Vector Store استبدال TF-IDF بـ ChromaDB أو FAISS
+📚 Learning Engine ربطه مع PostgreSQL لتخزين التجارب
+🔄 Context Sharing جعل Memory Manager مشتركاً بين كل الوكلاء
+
+7. الاختبار والتوثيق
+
+المهمة التفاصيل
+✅ Unit Tests كتابة اختبارات للمكونات الأساسية
+📝 Documentation تحديث README و إضافة تعليمات التشغيل
+🔍 Logging استبدال print بـ loguru مع مستويات مختلفة
+
+---
+
+📋 خطة عمل مجمعة (بالأولويات)
+
+🔴 الأولوية القصوى (حرج)
+
+من المهمة
+أنت إعداد مفاتيح API وخدمات Render
+أنت إنشاء 5 خدمات منفصلة على Render
+الوكيل إصلاح imports في main.py
+الوكيل تحويل Adapters من Stubs إلى حقيقية
+
+🟠 عالية الأهمية
+
+من المهمة
+أنت ربط المتغيرات البيئية في كل خدمة
+الوكيل استبدال localhost بـ Service URLs
+الوكيل إضافة Redis كـ Message Bus
+الوكيل إزالة Mock Execution من meta_agent.py
+
+🟡 متوسطة الأهمية
+
+من المهمة
+الوكيل إنشاء dependency_resolver.py
+الوكيل إنشاء completeness_checker.py
+الوكيل إصلاح Frontend imports
+الوكيل تحسين Vector Store باستخدام ChromaDB
+
+🟢 منخفضة الأهمية
+
+من المهمة
+الوكيل كتابة Unit Tests
+الوكيل تحديث التوثيق
+الوكيل تحسين نظام Logging
+
+---
+
+🚀 الخلاصة النهائية
+
+دورك أنت دور الوكيل
+✅ إعداد البنية التحتية (Render, Neon, Upstash) ✅ إصلاح الكود المكسور
+✅ إدارة المفاتيح والمتغيرات ✅ تحويل Adapters لحقيقية
+✅ ربط الخدمات ببعضها ✅ إضافة Service Discovery
+✅ اختبار التشغيل النهائي ✅ إصلاح Frontend
+ ✅ كتابة المكونات الناقصة
